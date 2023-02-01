@@ -17,8 +17,8 @@ WITH t1 AS (
 		upd_dt,
 		file_ids,
 		NULL AS file_id 
-		FROM-- 值班记录表
-		duty_record 
+		FROM
+		duty_record -- 值班记录表
 	WHERE
 		schedule_id = 'b0bf52521cab2166f82fb57fcc142f5b' 
 		AND file_ids IS NULL UNION -- 连接运算符， 相当于+号操作， 作用：将多个查询结果集合并为一个最终结果集
@@ -33,8 +33,7 @@ WITH t1 AS (
 		crt_dt,
 		upd_dt,
 		file_ids,
--- 将file_ids中按，拆分为file_id不同其他字段相同的多条记录
-		regexp_split_to_table( file_ids, ',' ) file_id 
+		regexp_split_to_table( file_ids, ',' ) file_id -- 将file_ids中按，拆分为file_id不同其他字段相同的多条记录
 	FROM
 		duty_record 
 	WHERE
